@@ -76,7 +76,7 @@ public class ImpressionsService {
         return timeRanges.stream()
                 .mapToLong(timeRange -> {
                     long impressions = 0;
-                    for (LocalTime time = timeRange.getStart(); !time.isAfter(timeRange.getEnd()); time = time.plusHours(1)) {
+                    for (LocalTime time = timeRange.start(); !time.isAfter(timeRange.end()); time = time.plusHours(1)) {
                         impressions += Math.round(getImpressionForHour(time, dailyImpressions));
                     }
                     return impressions;

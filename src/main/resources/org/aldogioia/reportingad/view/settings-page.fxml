@@ -11,6 +11,8 @@
 
 <VBox minWidth="500.0" spacing="16.0" style="-fx-background-color: #eaeaea;" stylesheets="@../css/styles.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.aldogioia.reportingad.controller.SettingsController">
 
+    <Label text="Impostazioni" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+
     <TableView fx:id="tableView" maxHeight="1.7976931348623157E308" style="-fx-background-color: #f8f8ff; -fx-background-radius: 8px;" VBox.vgrow="ALWAYS">
         <columns>
             <TableColumn fx:id="nameCol" text="Nome Schermo" />

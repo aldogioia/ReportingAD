@@ -1,8 +1,6 @@
 package org.aldogioia.reportingad.model;
 
 import javafx.scene.control.Alert;
-import lombok.Getter;
-import lombok.Setter;
 import org.aldogioia.reportingad.utils.AlertHandler;
 
 import java.io.IOException;
@@ -10,14 +8,12 @@ import java.nio.file.*;
 import java.time.LocalTime;
 import java.util.*;
 
-@Getter
-@Setter
 public class GlobalHandler {
     private static GlobalHandler instance;
 
     private final Map<String, Long> dataScreen;  // nome → impression
-    private LocalTime startTime;
-    private LocalTime endTime;
+    private final LocalTime startTime;
+    private final LocalTime endTime;
 
     private final Path screenPath = Paths.get("files", "data_screen.csv");
 
@@ -30,6 +26,10 @@ public class GlobalHandler {
         } catch (IOException e) {
             AlertHandler.showAlert(Alert.AlertType.ERROR,"Errore", "Errore durante il caricamento dei dati.");
         }
+    }
+
+    public Map<String, Long> getDataScreen() {
+        return instance.dataScreen;
     }
 
     public static GlobalHandler getInstance() {
