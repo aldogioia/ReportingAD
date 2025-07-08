@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox minWidth="500.0" spacing="16.0" style="-fx-background-color: #eaeaea;" stylesheets="@../css/styles.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.aldogioia.reportingad.controller.SettingsController">
+<VBox minWidth="500.0" spacing="32.0" style="-fx-background-color: #eaeaea;" stylesheets="@../css/styles.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.aldogioia.reportingad.controller.SettingsController">
 
     <Label text="Impostazioni" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
 
