@@ -1,0 +1,42 @@
+.btn {
+    -fx-text-fill: #3498db;
+    -fx-min-width: 100px;
+}
+
+.btn-generate {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-cursor: pointer;
+    -fx-font-weight: 500;
+    -fx-padding: 8px 16px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-font-size: 13px;
+    -fx-min-width: 100px;
+}
+
+.btn-delete {
+    -fx-text-fill: #e74c3c;
+    -fx-min-width: 100px;
+}
+
+.menu-btn{
+    -fx-background-color: #e8e8e8;
+    -fx-padding: 8px 16px;
+    -fx-pref-height: 50px;
+    -fx-pref-width: 50px;
+}
+
+.selected {
+    -fx-background-color: #3498db;
+}
+
+.icon {
+    -fx-fill: #3498db;
+    -fx-pref-height: 24px;
+    -fx-pref-width: 24px;
+}
+
+.selected .icon {
+    -fx-fill: #f8f8ff;
+}

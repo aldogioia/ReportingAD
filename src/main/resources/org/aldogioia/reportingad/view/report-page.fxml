@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane minWidth="500.0" fitToWidth="true" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.aldogioia.reportingad.controller.ReportController">
+
+    <VBox spacing="32" style="-fx-background-color: #eaeaea;" stylesheets="@../css/styles.css">
+
+        <!-- Periodo -->
+        <HBox spacing="8" style="-fx-background-color: #f8f8ff; -fx-background-radius: 8px; -fx-padding: 8;" VBox.vgrow="ALWAYS">
+            <VBox alignment="CENTER_LEFT" maxWidth="Infinity" spacing="8" HBox.hgrow="ALWAYS">
+                <Label text="Data inizio" />
+                <DatePicker fx:id="startDatePicker" maxWidth="Infinity" />
+            </VBox>
+            <VBox alignment="CENTER_LEFT" maxWidth="Infinity" spacing="8" HBox.hgrow="ALWAYS">
+                <Label text="Data fine" />
+                <DatePicker fx:id="endDatePicker" maxWidth="Infinity" />
+            </VBox>
+        </HBox>
+
+        <!-- Giorni della settimana -->
+        <VBox spacing="8" style="-fx-background-color: #f8f8ff; -fx-background-radius: 8px; -fx-padding: 8;">
+            <Label text="Orari settimanali" />
+            <VBox fx:id="daysContainer" spacing="8">
+            </VBox>
+        </VBox>
+
+        <!-- Schermi (2 colonne) -->
+        <VBox spacing="8" style="-fx-background-color: #f8f8ff; -fx-background-radius: 8px; -fx-padding: 8;">
+            <Label text="Schermi" />
+            <TilePane fx:id="screenPane" hgap="10" prefColumns="2" tileAlignment="TOP_LEFT" vgap="10" />
+        </VBox>
+
+        <!-- Creative -->
+        <VBox spacing="8" style="-fx-background-color: #f8f8ff; -fx-background-radius: 8px; -fx-padding: 8;">
+            <Label text="Creative" />
+            <HBox spacing="8">
+                <Button onAction="#onAddCreative" styleClass="btn" text="Aggiungi" />
+                <TextField fx:id="txtCreative" HBox.hgrow="ALWAYS" />
+            </HBox>
+            <ListView fx:id="creativeListView" prefHeight="100" />
+            <Button onAction="#onRemoveCreative" styleClass="btn-delete" text="Elimina" />
+        </VBox>
+
+        <!-- Campagna -->
+        <VBox spacing="8" style="-fx-background-color: #f8f8ff; -fx-background-radius: 8px; -fx-padding: 8;">
+            <Label text="Nome Campagna" />
+            <TextField fx:id="txtCampaignName" />
+        </VBox>
+
+        <!-- CPM -->
+        <VBox spacing="8" style="-fx-background-color: #f8f8ff; -fx-background-radius: 8px; -fx-padding: 8;">
+            <Label text="CPM" />
+            <TextField fx:id="txtCpm" />
+        </VBox>
+
+        <!-- Impressions Goal -->
+        <VBox spacing="8" style="-fx-background-color: #f8f8ff; -fx-background-radius: 8px; -fx-padding: 8;">
+            <Label fx:id="impressionsLabel" text="Impressions Goal (max: )" />
+            <TextField fx:id="txtImpressionsGoal" />
+        </VBox>
+
+        <!-- Genera Report -->
+        <Button maxWidth="Infinity" onAction="#onGenerateReport" styleClass="btn-generate" text="Genera Report" />
+
+      <padding>
+         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+      </padding>
+    </VBox>
+</ScrollPane>
