@@ -32,11 +32,13 @@
 }
 
 .icon {
-    -fx-fill: #3498db;
+    -fx-stroke: #3498db;
+    -fx-stroke-width: 2px;
+    -fx-fill: none;
     -fx-pref-height: 24px;
     -fx-pref-width: 24px;
 }
 
 .selected .icon {
-    -fx-fill: #f8f8ff;
+    -fx-stroke: #303030;
 }

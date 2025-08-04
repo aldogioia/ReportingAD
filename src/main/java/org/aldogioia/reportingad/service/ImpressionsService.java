@@ -1,6 +1,6 @@
 package org.aldogioia.reportingad.service;
 
-import org.aldogioia.reportingad.model.GlobalHandler;
+import org.aldogioia.reportingad.utils.GlobalHandler;
 import org.aldogioia.reportingad.model.data.TimeRange;
 
 import java.time.DayOfWeek;

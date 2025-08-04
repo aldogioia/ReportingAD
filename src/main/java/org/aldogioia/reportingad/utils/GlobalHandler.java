@@ -1,7 +1,6 @@
-package org.aldogioia.reportingad.model;
+package org.aldogioia.reportingad.utils;
 
 import javafx.scene.control.Alert;
-import org.aldogioia.reportingad.utils.AlertHandler;
 
 import java.io.IOException;
 import java.nio.file.*;
@@ -15,7 +14,7 @@ public class GlobalHandler {
     private final LocalTime startTime;
     private final LocalTime endTime;
 
-    private final Path screenPath = Paths.get("files", "data_screen.csv");
+    private final Path screenPath = Paths.get("files", "data_screen_1.csv");
 
     private GlobalHandler() {
         this.dataScreen = new LinkedHashMap<>();
@@ -52,6 +51,7 @@ public class GlobalHandler {
     public void loadData() throws IOException {
         dataScreen.clear();
 
+        Map<String, Long> dataLoaded = new LinkedHashMap<>();
         if (Files.exists(screenPath)) {
             List<String> lines = Files.readAllLines(screenPath);
             for (String line : lines) {
@@ -59,10 +59,13 @@ public class GlobalHandler {
                 if (parts.length == 2) {
                     String name = parts[0].trim();
                     long impressions = Long.parseLong(parts[1].trim());
-                    dataScreen.put(name, impressions);
+                    dataLoaded.put(name, impressions);
                 }
             }
         }
+
+        dataLoaded.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .forEach(entry -> dataScreen.put(entry.getKey(), entry.getValue()));
     }
 
     public void saveData() throws IOException {

@@ -1,6 +1,6 @@
 package org.aldogioia.reportingad.service;
 
-import org.aldogioia.reportingad.model.GlobalHandler;
+import org.aldogioia.reportingad.utils.GlobalHandler;
 import org.aldogioia.reportingad.model.data.TimeRange;
 
 import java.time.DayOfWeek;
@@ -30,7 +30,7 @@ public class ProjectionService {
 
         for (LocalDate date = startDate; date.isEqual(endDate) || date.isBefore(endDate); date = date.plusDays(1)) {
             if (timeRangesPerDay.containsKey(date.getDayOfWeek())) {
-                for (String screen : screens) {
+                for (String screen : screens.stream().sorted().toList()) {
                     //ottengo il numero di impressioni settimanali per lo schermo
                     Long weeklyImpressionsForScreen = GlobalHandler.getInstance().getDataScreen().get(screen);
 

@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.LongStringConverter;
-import org.aldogioia.reportingad.model.GlobalHandler;
+import org.aldogioia.reportingad.utils.GlobalHandler;
 import org.aldogioia.reportingad.utils.AlertHandler;
 
 import java.io.IOException;

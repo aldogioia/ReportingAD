@@ -3,7 +3,6 @@ module org.aldogioia.reportingad {
     requires javafx.fxml;
     requires org.apache.poi.poi;
     requires org.apache.poi.ooxml;
-    requires org.kordamp.ikonli.javafx;
 
 
     opens org.aldogioia.reportingad to javafx.fxml;

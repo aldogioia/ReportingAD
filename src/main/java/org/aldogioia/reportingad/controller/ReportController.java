@@ -7,7 +7,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import org.aldogioia.reportingad.model.GlobalHandler;
+import org.aldogioia.reportingad.utils.GlobalHandler;
 import org.aldogioia.reportingad.model.data.TimeRange;
 import org.aldogioia.reportingad.model.enumerator.MessageCode;
 import org.aldogioia.reportingad.service.ExcelService;
@@ -15,10 +15,8 @@ import org.aldogioia.reportingad.service.ImpressionsService;
 import org.aldogioia.reportingad.service.ProjectionService;
 import org.aldogioia.reportingad.utils.InputValidator;
 
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import static org.aldogioia.reportingad.utils.AlertHandler.showAlert;
@@ -104,7 +102,6 @@ public class ReportController {
 
         try {
             long filteredMaxImpressions = impressionsService.calculateFilteredMaxImpressions(start, end, selectedScreens, timeMap);
-            System.out.println("Impressions: " + filteredMaxImpressions);
             impressionsLabel.setText("Impressions Goal (max: " + filteredMaxImpressions + ")");
         } catch (Exception ex) {
             impressionsLabel.setText("Impressions Goal (max: )");
@@ -312,12 +309,19 @@ public class ReportController {
                         timeRanges
                 );
 
+        DateTimeFormatter utcFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss 'UTC'");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        String generatedOn = ZonedDateTime.now(ZoneOffset.UTC).format(utcFormatter);
+        String startFormatted = start.format(dateTimeFormatter);
+        String endFormatted = end.format(dateTimeFormatter);
+
         List<String> infoLines = List.of(
-                "Report Generato il: ;" + LocalDateTime.now(),
-                "Campagna: ;" + campaignNameText,
-                "CPM: ;" + cpm,
-                "Impressions Goal: ;" + impressionsGoal,
-                "Creative: ;" + String.join(";", creativeList)
+                "Report: " + campaignNameText,
+                "Generated on " + generatedOn,
+                "Breakdown: DAILY from " + startFormatted + " to " + endFormatted,
+                "Filters:",
+                " - CAMPAIGN: " + campaignNameText
         );
 
         String headerLine = "Date;Screen;Creative;Impressions;Spend";

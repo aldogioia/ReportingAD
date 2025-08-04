@@ -57,14 +57,55 @@ public class ExcelService {
         }
     }
 
-    private static int getRowIndex(List<String> infoLines, Sheet sheet, int rowIndex) {
-        for (String info : infoLines) {
-            String[] values = info.split(";");
+    private static int getRowIndex(List<String> lines, Sheet sheet, int rowIndex) {
+        Workbook workbook = sheet.getWorkbook();
+        DataFormat format = workbook.createDataFormat();
+
+        // Stile per valuta €
+        CellStyle euroStyle = workbook.createCellStyle();
+        euroStyle.setDataFormat(format.getFormat("#,##0.00\" €\""));
+
+        // Stile per numeri con separatore delle migliaia
+        CellStyle integerStyle = workbook.createCellStyle();
+        integerStyle.setDataFormat(format.getFormat("#,##0"));
+
+        for (String line : lines) {
+            String[] values = line.split(";");
             Row row = sheet.createRow(rowIndex++);
             for (int i = 0; i < values.length; i++) {
-                row.createCell(i).setCellValue(values[i]);
+                Cell cell = row.createCell(i);
+                String value = values[i].trim();
+
+                // Se è la penultima colonna → impressions
+                if (i == values.length - 2) {
+                    try {
+                        long impressions = Long.parseLong(value.replace(".", "").replace(",", ""));
+                        cell.setCellValue(impressions);
+                        cell.setCellStyle(integerStyle);
+                    } catch (NumberFormatException e) {
+                        cell.setCellValue(value); // fallback
+                    }
+
+                    // Se è l'ultima colonna → spend
+                } else if (i == values.length - 1) {
+                    try {
+                        double spend = Double.parseDouble(value.replace(",", "."));
+                        cell.setCellValue(spend);
+                        cell.setCellStyle(euroStyle);
+                    } catch (NumberFormatException e) {
+                        cell.setCellValue(value); // fallback
+                    }
+
+                    // Altrimenti è testo
+                } else {
+                    cell.setCellValue(value);
+                }
             }
         }
+
         return rowIndex;
     }
+
+
+
 }
