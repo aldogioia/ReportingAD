@@ -5,6 +5,7 @@ import org.aldogioia.reportingad.model.data.TimeRange;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -57,7 +58,7 @@ public class ProjectionService {
                         String creative = creativeImpression.getKey();
                         Long impressions = creativeImpression.getValue();
                         double spend = (cpm * impressions) / 1000;
-                        String projectionRow = date + ";" + screen + ";" + creative + ";" + impressions + ";" + spend;
+                        String projectionRow = date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + ";" + screen + ";" + creative + ";" + impressions + ";" + spend;
                         projectionData.add(projectionRow);
                     }
                 }
